@@ -19,9 +19,9 @@ $createMissingTables=createTables();
         <div class="page-header">
             <h1>Welcome to Edufy</h1>
         </div>
-       <a  class="btn btn-warning  btn-lg btn-block" href="app/forms/subject.php">Add Subject</a>
+       <a  class="btn btn-warning  btn-lg btn-block" href="app/forms/subjects.php">Add Subject</a>
        <a  class="btn btn-primary  btn-lg btn-block" href="app/forms/class.php">Add Class</a>
-        <a  class="btn btn-secondary  btn-lg btn-block" href="app/forms/student.php">Register Student</a>
+        <a  class="btn btn-secondary  btn-lg btn-block" href="app/forms/students.php">Register Student</a>
         <a  class="btn btn-success  btn-lg btn-block" href="app/forms/QA.php">Add Question and Answers</a>
     </div>
 </body>

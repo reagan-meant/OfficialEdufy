@@ -1,6 +1,11 @@
 
 <?php
 include_once 'db_connection.php';
+include_once '../user/answers.php';
+include_once '../user/classes.php';
+include_once '../user/questions.php';
+include_once '../user/subjects.php';
+
 
   if(!empty($_POST) and $_POST['student_fname'] and $_POST['student_lname'] and $_POST['student_email'] and $_POST['student_username'] and $_POST['student_password'] and $_POST['class_id'])
   {
@@ -13,7 +18,7 @@ include_once 'db_connection.php';
     $classId = $_POST['class_id'];
 
     insertStudents($studentFname,$studentLname,$studentMname,$studentEmail,$studentUsername,$studentPassword,$classId);
-    header("Location:http://localhost/edufy/app/forms/student.php");
+    header("Location:http://localhost/edufy/app/forms/students.php");
 } 
 
 
@@ -27,6 +32,10 @@ function insertStudents($studentFname,$studentLname,$studentMname,$studentEmail,
 
   if ($query->execute()) {
     createDB($studentUsername,$conn);
+    userAnswers($studentUsername);
+    userClasses($studentUsername);
+    userSubjects($studentUsername);
+    userQuestions($studentUsername);
     CloseCon($conn);
     return true;
   } else {
@@ -48,16 +57,23 @@ function getStudents()
     return $result->error;
   }
 }
-function createDB($studentUsername,$conn){
-    //$conn = OpenCon();
-    $sql = "CREATE DATABASE ".$studentUsername;
-    if ($conn->query($sql) === TRUE) {
-        echo "Database created successfully with the name newDB";
-    } else {
-        echo "Error creating database: " . $conn->error;
+
+function createDB($studentUsername, $conn)
+{
+    $sql = "CREATE DATABASE " . $studentUsername . " DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
+    if (empty(mysqli_fetch_array(mysqli_query($conn, "SHOW DATABASES LIKE '$studentUsername'")))) {
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Database created successfully with the name " . $studentUsername;
+
+            //creating user Tables
+            createUserTables($studentUsername);
+        } else {
+
+            echo "Error creating database: " . $conn->error;
+        }
     }
-    
     // closing connection
-    $conn->close();
+    CloseCon($conn);
 }
 ?>

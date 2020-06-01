@@ -2,22 +2,24 @@
 include_once 'app/dao/tables.php';
 
 
-$conn = OpenCon();
-$testit = createDB("Makoba",$conn);
+$conn = OpenConFree();
+$testit = createDB("Makoba", $conn);
 
-function createDB($studentUsername,$conn){
-    //$conn = OpenCon();
-    $sql = "CREATE DATABASE ".$studentUsername;
-    if ($conn->query($sql) === TRUE) {
-        echo "Database created successfully with the name newDB";
-        $conn1 = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
+function createDB($studentUsername, $conn)
+{
+    $sql = "CREATE DATABASE " . $studentUsername . " DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
+    if (empty(mysqli_fetch_array(mysqli_query($conn, "SHOW DATABASES LIKE '$studentUsername'")))) {
 
-        $createMissingTables=createTables();
-    } else {
-        echo "Error creating database: " . $conn->error;
+        if ($conn->query($sql) === TRUE) {
+            echo "Database created successfully with the name " . $studentUsername;
+
+            //creating user Tables
+            createUserTables($studentUsername);
+        } else {
+
+            echo "Error creating database: " . $conn->error;
+        }
     }
-    
     // closing connection
-    $conn->close();
+    CloseCon($conn);
 }
-?>

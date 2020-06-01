@@ -47,8 +47,8 @@ function insertAnswers($option1,$option2,$option3,$option4)
 function insertQuestion($questionText,$ClassId,$termId,$correctOption,$answerId,$subjectId)
 {
   $conn = OpenCon();
-  $query = $conn->prepare("INSERT INTO questions(question_text,class_id,term_id,correct_option,answer_id,subject_id) VALUES (?,?,?,?,?,?)");
-  $query->bind_param("siiiii", $questionText,$ClassId,$termId,$correctOption,$answerId,$subjectId);
+  $query = $conn->prepare("INSERT INTO questions(question_text,tag,class_id,term_id,correct_option,answer_id,subject_id) VALUES (?,?,?,?,?,?,?)");
+  $query->bind_param("ssiiiii", $questionText,"objectives",$ClassId,$termId,$correctOption,$answerId,$subjectId);
 
 
   if ($query->execute()) {
