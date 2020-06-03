@@ -1,7 +1,5 @@
 <?php
 
-//include_once '../dao/tables.php';
-
 function userAnswers($username){
 $conn = OpenCustomCon($username);
 $csvFile = fopen('../resources/files/answers.csv', 'r');
@@ -35,4 +33,3 @@ while(($line = fgetcsv($csvFile)) !== FALSE){
 fclose($csvFile);
 CloseCon($conn);
 }
-?>

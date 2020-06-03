@@ -1,10 +1,12 @@
 <?php
 
-include_once '../sqDb_connection.php';
 function sqUserClasses($studentUsername)
 {
     //$conn = OpenCustomCon($username);
-    $csvFile = fopen('../../resources/files/classes.csv', 'r');
+   
+    $csvFile = fopen('C:\xampp1\htdocs\edufy\app\resources\files\classes.csv', 'r');
+
+    //$csvFile = fopen('../../resources/files/classes.csv', 'r');
 
     // Skip the first line
     fgetcsv($csvFile);
@@ -16,7 +18,7 @@ function sqUserClasses($studentUsername)
         $className  = $line[1];
 
         // Check whether member already exists in the database with the same email
-        $prevQuery = "SELECT class_id FROM classes WHERE class_id = '" . $line[0] . "'";
+        $prevQuery = "SELECT COUNT(*) as count FROM classes WHERE class_id = '" . $line[0] . "'";
 
         $db = new MyDB($studentUsername);
         if (!$db) {
@@ -24,7 +26,11 @@ function sqUserClasses($studentUsername)
         } else {
             $prevResult = $db->query($prevQuery);
 
-            if ($prevResult->num_rows > 0) {
+            $row = $prevResult->fetchArray();
+            $numRows = $row['count'];
+            //$prevResult = $conn->query($prevQuery);
+
+            if ($numRows > 0) {
                 // Update member data in the database
                 // $db->query("UPDATE members SET name = '".$name."', phone = '".$phone."', status = '".$status."', modified = NOW() WHERE email = '".$email."'");
             } else {

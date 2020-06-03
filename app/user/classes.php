@@ -1,7 +1,5 @@
 <?php
 
-//include_once '../dao/tables.php';
-
 function userClasses($username){
 $conn = OpenCustomCon($username);
 $csvFile = fopen('../resources/files/classes.csv', 'r');

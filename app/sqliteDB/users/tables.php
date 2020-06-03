@@ -1,5 +1,4 @@
 <?php
-include_once 'sqDb_connection.php';
 
 $commands = [
     //classes table
@@ -64,13 +63,13 @@ $commands = [
                                      ON DELETE CASCADE)',
 ];
 
-function createTables()
+function createSqTables($studentUsername)
 {
 
     global $commands;
 
     foreach ($commands as $command) {
-        $db = new MyDB('meantex');
+        $db = new MyDB($studentUsername);
         if (!$db) {
             echo $db->lastErrorMsg();
         } else {
@@ -83,16 +82,4 @@ function createTables()
             $db->close();
         }
     }
-}
-
-function createUserTables($studentUsername)
-{
-    global $commands;
-    $conn = OpenCustomCon($studentUsername);
-    // execute the sql commands to create new tables
-    foreach ($commands as $command) {
-
-        $result = CreateTablesQuery($command, "Table created Successfully", $conn);
-    }
-    CloseCon($conn);
 }

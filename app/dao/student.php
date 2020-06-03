@@ -6,6 +6,7 @@ include_once '../user/classes.php';
 include_once '../user/questions.php';
 include_once '../user/subjects.php';
 include_once 'tables.php';
+include_once '../sqliteDB/sqDb_connection.php';
 include_once '../sqliteDB/users/generate_userDB.php';
 
 
@@ -20,6 +21,7 @@ include_once '../sqliteDB/users/generate_userDB.php';
     $classId = $_POST['class_id'];
 
     insertStudents($studentFname,$studentLname,$studentMname,$studentEmail,$studentUsername,$studentPassword,$classId);
+    generateUserDB($studentUsername);
     header("Location:http://localhost/edufy/app/forms/students.php");
 } 
 
@@ -38,12 +40,13 @@ function insertStudents($studentFname,$studentLname,$studentMname,$studentEmail,
     userClasses($studentUsername);
     userSubjects($studentUsername);
     userQuestions($studentUsername);
-    CloseCon($conn);
-    generateUserDB($studentUsername);
+    
+    
     return true;
   } else {
     return $conn->error;
   }
+  CloseCon($conn);
 }
 
 function getStudents()
