@@ -1,10 +1,11 @@
 <?php
 
-//include_once '../dao/tables.php';
+include_once '../sqDb_connection.php';
 
-function userSubjects($username){
-$conn = OpenCustomCon($username);
-$csvFile = fopen('../resources/files/subjects.csv', 'r');
+
+function sqUserSubjects($studentUsername){
+//$conn = OpenCustomCon($username);
+$csvFile = fopen('../../resources/files/subjects.csv', 'r');
             
 // Skip the first line
 fgetcsv($csvFile);
@@ -20,19 +21,25 @@ while(($line = fgetcsv($csvFile)) !== FALSE){
     
     // Check whether member already exists in the database with the same email
     $prevQuery = "SELECT subject_id FROM subjects WHERE subject_id = '".$line[0]."'";
-    $prevResult = $conn->query($prevQuery);
+
+    $db = new MyDB($studentUsername);
+    if (!$db) {
+        echo $db->lastErrorMsg();
+    } else {
+    $prevResult = $db->query($prevQuery);
     
     if($prevResult->num_rows > 0){
         // Update member data in the database
        // $db->query("UPDATE members SET name = '".$name."', phone = '".$phone."', status = '".$status."', modified = NOW() WHERE email = '".$email."'");
     }else{
         // Insert member data in the database
-        $conn->query("INSERT INTO subjects (subject_id,subject_name,class_id) VALUES ('".$subjectId."', '".$subjectName."', '".$classId."')");
+        $db->query("INSERT INTO subjects (subject_id,subject_name,class_id) VALUES ('".$subjectId."', '".$subjectName."', '".$classId."')");
     }
+    $db->close();
+        }
 }
 
 // Close opened CSV file
 fclose($csvFile);
-CloseCon($conn);
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-include_once '../dao/tables.php';
+//include_once '../dao/tables.php';
 
 function userAnswers($username){
 $conn = OpenCustomCon($username);
@@ -19,7 +19,7 @@ while(($line = fgetcsv($csvFile)) !== FALSE){
     $option4  = $line[4];
     
     // Check whether member already exists in the database with the same email
-    $prevQuery = "SELECT id FROM answers WHERE answer_id = '".$line[0]."'";
+    $prevQuery = "SELECT answer_id FROM answers WHERE answer_id = '".$line[0]."'";
     $prevResult = $conn->query($prevQuery);
     
     if($prevResult->num_rows > 0){

@@ -5,6 +5,8 @@ include_once '../user/answers.php';
 include_once '../user/classes.php';
 include_once '../user/questions.php';
 include_once '../user/subjects.php';
+include_once 'tables.php';
+include_once '../sqliteDB/users/generate_userDB.php';
 
 
   if(!empty($_POST) and $_POST['student_fname'] and $_POST['student_lname'] and $_POST['student_email'] and $_POST['student_username'] and $_POST['student_password'] and $_POST['class_id'])
@@ -37,6 +39,7 @@ function insertStudents($studentFname,$studentLname,$studentMname,$studentEmail,
     userSubjects($studentUsername);
     userQuestions($studentUsername);
     CloseCon($conn);
+    generateUserDB($studentUsername);
     return true;
   } else {
     return $conn->error;
