@@ -24,7 +24,6 @@ function backupSubjects()
         while ($row = $result->fetch_array(MYSQLI_NUM)) {
             fputcsv($fp, array_values($row));
         }
-        die;
     }
 }
 

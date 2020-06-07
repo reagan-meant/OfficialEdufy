@@ -8,7 +8,7 @@ include_once 'db_connection.php';
     $ClassId = $_POST['class_id'];
     $termId = $_POST['term_id'];
     $correctOption = $_POST['correct_option'];
-    //$answerId = $_POST['answer_id'];
+    $paperNumber = $_POST['paper_number'];
     $subjectId = $_POST['subject_id'];
     $option1 = $_POST['option1'];
     $option2 = $_POST['option2'];
@@ -21,7 +21,7 @@ include_once 'db_connection.php';
     echo $option4;
     $answerId = insertAnswers($option1,$option2,$option3,$option4);
     echo $answerId;
-    insertQuestion($questionText,$ClassId,$termId,$correctOption,$answerId,$subjectId);
+    insertQuestion($questionText,$ClassId,$termId,$correctOption,$answerId,$subjectId,$paperNumber);
     header("Location:http://localhost/edufy/app/forms/QA.php");
 } else{
     echo "Insert all fields";
@@ -44,12 +44,12 @@ function insertAnswers($option1,$option2,$option3,$option4)
 }
 
 
-function insertQuestion($questionText,$ClassId,$termId,$correctOption,$answerId,$subjectId)
+function insertQuestion($questionText,$ClassId,$termId,$correctOption,$answerId,$subjectId,$paperNumber)
 {
   $natureOfQn = "objective";
   $conn = OpenCon();
-  $query = $conn->prepare("INSERT INTO questions(question_text,tag,class_id,term_id,correct_option,answer_id,subject_id) VALUES (?,?,?,?,?,?,?)");
-  $query->bind_param("ssiiiii", $questionText,$natureOfQn,$ClassId,$termId,$correctOption,$answerId,$subjectId);
+  $query = $conn->prepare("INSERT INTO questions(question_text,tag,class_id,term_id,correct_option,answer_id,subject_id,paper_number) VALUES (?,?,?,?,?,?,?,?)");
+  $query->bind_param("ssiiiiii", $questionText,$natureOfQn,$ClassId,$termId,$correctOption,$answerId,$subjectId,$paperNumber);
 
 
   if ($query->execute()) {

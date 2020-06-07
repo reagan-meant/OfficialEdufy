@@ -2,16 +2,16 @@
 include_once 'db_connection.php';
 
 if (!empty($_POST)){
-$className = $_POST['class_name'];
-$levelId = $_POST['level_id'];
-insertClasses($className,$levelId);
-header("Location:http://localhost/edufy/app/forms/class.php");
+$levelName = $_POST['level_name'];
+
+insertLevels($levelName);
+header("Location:http://localhost/edufy/app/forms/level.php");
 }
-function insertClasses($className,$levelId)
+function insertLevels($levelName)
 {
   $conn = OpenCon();
-  $query = $conn->prepare("INSERT INTO classes(class_name,level_id) VALUES (?,?)");
-  $query->bind_param("si", $className,$levelId);
+  $query = $conn->prepare("INSERT INTO Levels(level_name) VALUES (?)");
+  $query->bind_param("s", $levelName);
 
   if ($query->execute()) {
     CloseCon($conn);
@@ -21,10 +21,10 @@ function insertClasses($className,$levelId)
   }
 }
 
-function selectClasses()
+function selectLevels()
 {
   $conn = OpenCon();
-  $result = $conn->query("SELECT * FROM classes");
+  $result = $conn->query("SELECT * FROM Levels");
   if ($result) {
     if ($result->num_rows > 0) {
       CloseCon($conn);

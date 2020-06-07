@@ -5,6 +5,8 @@ include_once '../user/answers.php';
 include_once '../user/classes.php';
 include_once '../user/questions.php';
 include_once '../user/subjects.php';
+include_once '../user/terms.php';
+include_once '../user/levels.php';
 include_once 'tables.php';
 include_once '../sqliteDB/sqDb_connection.php';
 include_once '../sqliteDB/users/generate_userDB.php';
@@ -40,6 +42,8 @@ function insertStudents($studentFname,$studentLname,$studentMname,$studentEmail,
     userClasses($studentUsername);
     userSubjects($studentUsername);
     userQuestions($studentUsername);
+    userTerms($studentUsername);
+    userLevels($studentUsername);
     
     
     return true;

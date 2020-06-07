@@ -21,6 +21,8 @@ $createMissingTables=createTables();
         </div>
        <a  class="btn btn-warning  btn-lg btn-block" href="app/forms/subjects.php">Add Subject</a>
        <a  class="btn btn-primary  btn-lg btn-block" href="app/forms/class.php">Add Class</a>
+       <a  class="btn btn-warning  btn-lg btn-block" href="app/forms/level.php">Add Level</a>
+       <a  class="btn btn-success  btn-lg btn-block" href="app/forms/terms.php">Add Terms</a>
         <a  class="btn btn-secondary  btn-lg btn-block" href="app/forms/students.php">Register Student</a>
         <a  class="btn btn-success  btn-lg btn-block" href="app/forms/QA.php">Add Question and Answers</a>
     </div>

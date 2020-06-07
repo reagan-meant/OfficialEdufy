@@ -15,10 +15,24 @@ function CreateTablesQuery($sql, $name, $conn)
 
 
 $commands = [
+    'CREATE TABLE IF NOT EXISTS levels (
+        level_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+        level_name  VARCHAR (255) NOT NULL)',
     //classes table
     'CREATE TABLE IF NOT EXISTS classes (
         class_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-        class_name  VARCHAR (255) NOT NULL)',
+        class_name  VARCHAR (255) NOT NULL,
+        level_id INT ,
+        FOREIGN KEY (level_id)
+        REFERENCES levels(level_id) ON UPDATE CASCADE
+                                     ON DELETE CASCADE)',        
+    'CREATE TABLE IF NOT EXISTS terms (
+        term_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+        term_name  VARCHAR (255) NOT NULL,
+        class_id INT ,
+        FOREIGN KEY (class_id)
+        REFERENCES classes(class_id) ON UPDATE CASCADE
+                                     ON DELETE CASCADE)',
     //students table
     'CREATE TABLE IF NOT EXISTS students (
                 student_id   INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -52,6 +66,7 @@ $commands = [
         question_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
         question_text  VARCHAR (255) NOT NULL,
         tag VARCHAR (255) NOT NULL,
+        paper_number INT NOT NULL,
         class_id INT,
         term_id INT,
         correct_option INT NOT NULL,

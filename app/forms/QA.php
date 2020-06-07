@@ -79,6 +79,12 @@
 
                     </select></td>
             </tr>
+
+            <tr>
+                <td> <label for="paper_number">Paper Number:</label></td>
+                <td><input type="number" name="paper_number" min="1" max="4" required id="paper_number"></td>
+            </tr>
+
             <tr>
 
                 <td>
