@@ -24,7 +24,7 @@ include_once '../sqliteDB/users/generate_userDB.php';
 
     insertStudents($studentFname,$studentLname,$studentMname,$studentEmail,$studentUsername,$studentPassword,$classId);
     generateUserDB($studentUsername);
-    header("Location:http://localhost/edufy/app/forms/students.php");
+    header("Location:http://localhost/officialedufy/app/forms/students.php");
 } 
 
 
@@ -38,12 +38,12 @@ function insertStudents($studentFname,$studentLname,$studentMname,$studentEmail,
 
   if ($query->execute()) {
     createDB($studentUsername,$conn);
-    userAnswers($studentUsername);
-    userClasses($studentUsername);
-    userSubjects($studentUsername);
-    userQuestions($studentUsername);
-    userTerms($studentUsername);
     userLevels($studentUsername);
+    userClasses($studentUsername);
+    userTerms($studentUsername);
+    userSubjects($studentUsername);
+    userAnswers($studentUsername);
+    userQuestions($studentUsername);
     
     
     return true;

@@ -1,10 +1,8 @@
 <?php
 
-
-
 function sqUserSubjects($studentUsername){
 //$conn = OpenCustomCon($username);
-$csvFile = fopen('C:\xampp1\htdocs\edufy\app\resources\files\subjects.csv', 'r');
+$csvFile = fopen('C:\xampp\htdocs\officialedufy\app\resources\files\subjects.csv', 'r');
 
 //$csvFile = fopen('../../resources/files/subjects.csv', 'r');
             

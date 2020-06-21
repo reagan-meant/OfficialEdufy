@@ -2,7 +2,7 @@
 
 function sqUserAnswers($studentUsername)
 {
-    $csvFile = fopen('C:\xampp1\htdocs\edufy\app\resources\files\answers.csv', 'r');
+    $csvFile = fopen('C:\xampp\htdocs\officialedufy\app\resources\files\answers.csv', 'r');
 
    // $csvFile = fopen('..\..\resources\files\answers.csv', 'r');
 

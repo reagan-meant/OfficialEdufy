@@ -6,7 +6,7 @@ $subjectName = $_POST['subject_name'];
 $classId = $_POST['class_id'];
 
 insertSubject($subjectName,$classId);
-header("Location:http://localhost/edufy/app/forms/subjects.php");
+header("Location:http://localhost/officialedufy/app/forms/subjects.php");
 }
 function insertSubject($subjectName,$classId)
 {

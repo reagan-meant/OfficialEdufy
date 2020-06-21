@@ -4,12 +4,17 @@ include_once 'classes.php';
 include_once 'questions.php';
 include_once 'subjects.php';
 include_once 'tables.php';
+include_once 'levels.php';
+include_once 'tables.php';
+
 
 function generateUserDB($studentUsername){
     createSqTables($studentUsername);
     sqUserAnswers($studentUsername);
     sqUserClasses($studentUsername);
     sqUserSubjects($studentUsername);
+    sqUserLevels($studentUsername);
     sqUserQuestions($studentUsername);
+    
 }
 ?>

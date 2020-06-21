@@ -55,6 +55,14 @@
                     </select></td>
             </tr>
             <tr>
+                <td> <label for="nature">Nature of Question:</label></td>
+                <td> <select class="custom-select custom-select-lg mb-3" name="nature">
+                        <option selected value="objective">Objective</option>
+                        <option value="short">Short</option>
+                        <option value="structured">Structured</option>
+                    </select></td>
+            </tr>
+            <tr>
                 <td><label for="subject_id">Subject:</label></td>
                 <td> <select class="custom-select custom-select-lg mb-3" name="subject_id">
                         <?php
@@ -105,15 +113,15 @@
             </tr>
             <tr>
                 <td><label for="option2">Option 2:</label></td>
-                <td> <textarea name="option2" rows="3" cols="100" required id="option2"></textarea></td>
+                <td> <textarea name="option2" rows="3" cols="100"  id="option2"></textarea></td>
             </tr>
             <tr>
                 <td> <label for="option3">Option 3:</label></td>
-                <td><textarea name="option3" rows="3" cols="100" required id="option3"></textarea></td>
+                <td><textarea name="option3" rows="3" cols="100"  id="option3"></textarea></td>
             </tr>
             <tr>
                 <td> <label for="option4">Option 4:</label></td>
-                <td><textarea name="option4" rows="3" cols="100" required id="option4"></textarea></td>
+                <td><textarea name="option4" rows="3" cols="100"  id="option4"></textarea></td>
             </tr>
             <tr>
                 <td></td>

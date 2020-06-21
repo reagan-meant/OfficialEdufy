@@ -58,9 +58,9 @@ $commands = [
     'CREATE TABLE IF NOT EXISTS answers (
         answer_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
         option1  VARCHAR (255) NOT NULL,
-        option2  VARCHAR (255) NOT NULL,
-        option3  VARCHAR (255) NOT NULL,
-        option4  VARCHAR (255) NOT NULL)',
+        option2  VARCHAR (255),
+        option3  VARCHAR (255),
+        option4  VARCHAR (255))',
     //Questions table
     'CREATE TABLE IF NOT EXISTS questions (
         question_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -71,6 +71,9 @@ $commands = [
         term_id INT,
         correct_option INT NOT NULL,
         answer_id INT,
+        answered INT DEFAULT 0,
+        times_correct INT DEFAULT 0,
+        times_wrong INT DEFAULT 0,
         subject_id INT,
         FOREIGN KEY (answer_id)
         REFERENCES answers(answer_id) ON UPDATE CASCADE

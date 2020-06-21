@@ -28,7 +28,7 @@
                 if ($result !== "zero") {
                     while ($row = $result->fetch_assoc()) {
                         echo "<option ";
-*/
+
                          echo "value='" . $row['level_id'] ."'>" . $row['level_name'] ."</option>";
                     }
                 }else{

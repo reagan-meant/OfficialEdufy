@@ -5,7 +5,7 @@ if (!empty($_POST)){
 $className = $_POST['class_name'];
 $levelId = $_POST['level_id'];
 insertClasses($className,$levelId);
-header("Location:http://localhost/edufy/app/forms/class.php");
+header("Location:http://localhost/officialedufy/app/forms/class.php");
 }
 function insertClasses($className,$levelId)
 {

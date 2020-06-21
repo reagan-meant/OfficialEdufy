@@ -5,7 +5,7 @@ if (!empty($_POST)){
 $levelName = $_POST['level_name'];
 
 insertLevels($levelName);
-header("Location:http://localhost/edufy/app/forms/level.php");
+header("Location:http://localhost/officialedufy/app/forms/level.php");
 }
 function insertLevels($levelName)
 {

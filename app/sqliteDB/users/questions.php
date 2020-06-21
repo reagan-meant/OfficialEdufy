@@ -3,7 +3,7 @@
 
 function sqUserQuestions($studentUsername){
 
-    $csvFile = fopen('C:\xampp1\htdocs\edufy\app\resources\files\questions.csv', 'r');
+    $csvFile = fopen('C:\xampp\htdocs\officialedufy\app\resources\files\questions.csv', 'r');
 
 //$csvFile = fopen('../../resources/files/questions.csv', 'r');
             
@@ -14,16 +14,16 @@ fgetcsv($csvFile);
 while(($line = fgetcsv($csvFile)) !== FALSE){
     // Get row data
    // question_id,question_text,tag,class_id,term_id,correct_option,answer_id,subject_id
-
+    
     $questionId   = $line[0];
     $questionText  = $line[1];
     $tag  = $line[2];
-    $classId  = $line[3];
-    $termId  = $line[4];
-    $correctOption  = $line[5];
-    $answerId  = $line[6];
-    $subjectId  = $line[7];
-    
+    $paperNumber =  $line[3];
+    $classId  = $line[4];
+    $termId  = $line[5];
+    $correctOption  = $line[6];
+    $answerId  = $line[7];
+    $subjectId  = $line[8];
     // Check whether member already exists in the database with the same email
     $prevQuery = "SELECT COUNT(*) as count FROM questions WHERE question_id = '".$line[0]."'";
 
@@ -42,8 +42,8 @@ while(($line = fgetcsv($csvFile)) !== FALSE){
        // $db->query("UPDATE members SET name = '".$name."', phone = '".$phone."', status = '".$status."', modified = NOW() WHERE email = '".$email."'");
     }else{
         // Insert member data in the database
-        $db->query("INSERT INTO questions (question_id,question_text,tag,class_id,term_id,correct_option,answer_id,subject_id
-        ) VALUES ('".$questionId."', '".$questionText."', '".$tag."', '".$classId."', '".$termId."', '".$correctOption."', '".$answerId."', '".$subjectId."')");
+        $db->query("INSERT INTO questions (question_id,question_text,tag,paper_number,class_id,term_id,correct_option,answer_id,subject_id
+        ) VALUES ('".$questionId."', '".$questionText."', '".$tag."','".$paperNumber."', '".$classId."', '".$termId."', '".$correctOption."', '".$answerId."', '".$subjectId."')");
     }
     $db->close();
         }

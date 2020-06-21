@@ -4,7 +4,7 @@ function sqUserClasses($studentUsername)
 {
     //$conn = OpenCustomCon($username);
    
-    $csvFile = fopen('C:\xampp1\htdocs\edufy\app\resources\files\classes.csv', 'r');
+    $csvFile = fopen('C:\xampp\htdocs\officialedufy\app\resources\files\classes.csv', 'r');
 
     //$csvFile = fopen('../../resources/files/classes.csv', 'r');
 

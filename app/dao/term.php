@@ -6,7 +6,7 @@ $termName = $_POST['term_name'];
 $classId = $_POST['class_id'];
 
 insertTerm($termName,$classId);
-header("Location:http://localhost/edufy/app/forms/terms.php");
+header("Location:http://localhost/officialedufy/app/forms/terms.php");
 }
 function insertTerm($termName,$classId)
 {
