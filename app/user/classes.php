@@ -23,7 +23,7 @@ while(($line = fgetcsv($csvFile)) !== FALSE){
        // $db->query("UPDATE members SET name = '".$name."', phone = '".$phone."', status = '".$status."', modified = NOW() WHERE email = '".$email."'");
     }else{
         // Insert member data in the database
-        $conn->query("INSERT INTO classes (class_id, class_name, , level_id) VALUES ('" . $classId . "', '" . $className . "', '" . $levelId . "')");
+        $conn->query("INSERT INTO classes (class_id, class_name,  level_id) VALUES ('" . $classId . "', '" . $className . "', '" . $levelId . "')");
     }
 }
 

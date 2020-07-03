@@ -11,9 +11,9 @@ include_once 'tables.php';
 function generateUserDB($studentUsername){
     createSqTables($studentUsername);
     sqUserAnswers($studentUsername);
+    sqUserLevels($studentUsername);
     sqUserClasses($studentUsername);
     sqUserSubjects($studentUsername);
-    sqUserLevels($studentUsername);
     sqUserQuestions($studentUsername);
     
 }

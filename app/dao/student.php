@@ -22,8 +22,11 @@ include_once '../sqliteDB/users/generate_userDB.php';
     $studentPassword = $_POST['student_password'];
     $classId = $_POST['class_id'];
 
+    $present = checkStudentbyUsername($studentUsername);
+
+    if($present !== "present"){
     insertStudents($studentFname,$studentLname,$studentMname,$studentEmail,$studentUsername,$studentPassword,$classId);
-    generateUserDB($studentUsername);
+    generateUserDB($studentUsername);}
     header("Location:http://localhost/officialedufy/app/forms/students.php");
 } 
 
@@ -60,6 +63,51 @@ function getStudents()
   if ($result) {
     if ($result->num_rows > 0) {
       return $result;
+    } else {
+      return "zero";
+    }
+  } else {
+    return $result->error;
+  }
+}
+
+function checkStudentbyUsername($studentUsername)
+{
+  $conn = OpenCon();
+  $result = $conn->query("SELECT * FROM `students` WHERE student_username = '$studentUsername'");
+  if ($result) {
+    if ($result->num_rows > 0) {
+      return "present";
+    } else {
+      return "zero";
+    }
+  } else {
+    return $result->error;
+  }
+}
+
+function getStudentbyUsername($studentUsername)
+{
+  $conn = OpenCon();
+  $result = $conn->query("SELECT * FROM students WHERE student_username='$studentUsername'");
+  if ($result) {
+    if ($result->num_rows > 0) {
+      return $result;
+    } else {
+      return "zero";
+    }
+  } else {
+    return $result->error;
+  }
+} 
+
+function checkStudentbyUsernameAndPassword($studentUsername,$studentPassword)
+{
+  $conn = OpenCon();
+  $result = $conn->query("SELECT * FROM students WHERE student_username='$studentUsername' AND student_password='$studentPassword'");
+  if ($result) {
+    if ($result->num_rows > 0) {
+      return  "present";
     } else {
       return "zero";
     }
