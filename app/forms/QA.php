@@ -12,13 +12,13 @@
 </head>
 
 <body>
-<a href="../../">HOME</a>
+    <a href="../../">HOME</a>
     <h2>QandA Form</h2>
     <p>Please fill in this form and send us.</p>
 
 
 
-    <form action="../dao/QA.php" method="post">
+    <form action="../dao/QA.php" method="post" enctype="multipart/form-data">
 
         <table class="table table-borderless">
             <tr>
@@ -104,6 +104,38 @@
 
             </tr>
             <tr>
+                <td>Add Question Image</td>
+
+                <td> <input name="questionImages[]" type="file" multiple="multiple" /></td>
+            </tr>
+            <!-- <tr>
+                <td>Add Question Image</td>
+                <td><input type="file" name="questionImage"> <button onclick="showqn2()" class="btn btn-primary">Add second image</button>
+                </td>
+
+            </tr>
+            <tr id="qn2" style="display: none;">
+                <td>Add Question Image 2</td>
+                <td><input type="file" name="questionImage2"><button onclick="showqn3()" class="btn btn-primary">Add third image</button>
+                </td>
+                <!--             <td><button></button></td>
+ -->
+            <!--
+            </tr>
+            <tr id="qn3" style="display: none;">
+
+                <td>Add Question Image 3</td>
+                <td><input type="file" name="questionImage3"><button onclick="showqn4()" class="btn btn-primary">Add fourth image</button>
+                </td>
+    
+            </tr>
+            <tr id="qn4" style="display: none;">
+                <td>Add Question Image 4</td>
+                <td><input type="file" name="questionImage4"><!-- <button onclick="showqn2()" class="btn btn-primary">Add another image</button>
+                </td>
+    
+            </tr> -->
+            <tr>
                 <td> <label for="correct_option">Correct Option:</label></td>
                 <td><input type="number" name="correct_option" min="1" max="4" required id="correct_option"></td>
             </tr>
@@ -113,20 +145,30 @@
             </tr>
             <tr>
                 <td><label for="option2">Option 2:</label></td>
-                <td> <textarea name="option2" rows="3" cols="100"  id="option2"></textarea></td>
+                <td> <textarea name="option2" rows="3" cols="100" id="option2"></textarea></td>
             </tr>
             <tr>
                 <td> <label for="option3">Option 3:</label></td>
-                <td><textarea name="option3" rows="3" cols="100"  id="option3"></textarea></td>
+                <td><textarea name="option3" rows="3" cols="100" id="option3"></textarea></td>
             </tr>
+
             <tr>
                 <td> <label for="option4">Option 4:</label></td>
-                <td><textarea name="option4" rows="3" cols="100"  id="option4"></textarea></td>
+                <td><textarea name="option4" rows="3" cols="100" id="option4"></textarea></td>
             </tr>
             <tr>
-                <td></td>
-                <td><button class="btn btn-primary" type="submit">Submit form</button>
-                    <button class="btn btn-primary" type="reset" value="Reset">Reset form</button></td>
+                <td>Add Answer Image</td>
+                <td> <input name="answerImages[]" type="file" multiple="multiple" /></td>
+            </tr>
+            <!--    <tr>
+                <td>Add Answer Image</td>
+                <td><input type="file" name="answerImage"><button onclick="showAns2()" class="btn btn-primary">Add second image</button></td>
+
+
+            <tr> -->
+            <td></td>
+            <td><button class="btn btn-primary" type="submit">Submit form</button>
+                <button class="btn btn-primary" type="reset" value="Reset">Reset form</button></td>
             </tr>
         </table>
 
@@ -136,3 +178,29 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+    function showqn2() {
+        document.getElementById("qn2").style.display = "contents";
+    }
+
+    function showqn3() {
+        document.getElementById("qn3").style.display = "contents";
+    }
+
+    function showqn4() {
+        document.getElementById("qn4").style.display = "contents";
+    }
+
+    function showAns2() {
+        document.getElementById("ans2").style.display = "contents";
+    }
+
+    function showAns3() {
+        document.getElementById("ans3").style.display = "contents";
+    }
+
+    function showAns4() {
+        document.getElementById("ans4").style.display = "contents";
+    }
+</script>
