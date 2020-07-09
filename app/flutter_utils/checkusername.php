@@ -16,8 +16,9 @@ $userPresent = checkStudentbyUsername($studentUsername);
   echo json_encode($present);
    // echo "userpresent";
 } else{
-echo "absent";
-} 
+  header("Content-type:application/json");
+  $present = array('present' => 'absent');
+  echo json_encode($present);} 
 
 
 ?>

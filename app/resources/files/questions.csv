@@ -1,7 +1,10 @@
-question_id,question_text,tag,paper_number,class_id,term_id,correct_option,answer_id,subject_id
-1,"what is math",objective,2,1,1,2,1,1
-2,"whai ti geometry",objective,2,1,1,2,2,2
-3,"wha iis science",objective,1,1,1,2,3,3
-4,"what is computer",objective,2,1,1,2,4,1
-5,"add 1+1",objective,2,1,1,1,5,1
-6,"subtract 90-1",objective,2,1,1,2,6,1
+question_id,question_text,tag,images,paper_number,class_id,term_id,correct_option,answer_id,subject_id
+1,"what is math",objective,0,2,1,1,2,1,1
+2,"whai ti geometry",objective,0,2,1,1,2,2,2
+3,"wha iis science",objective,0,1,1,1,2,3,3
+4,"what is computer",objective,0,2,1,1,2,4,1
+5,"add 1+1",objective,0,2,1,1,1,5,1
+6,"subtract 90-1",objective,0,2,1,1,2,6,1
+7,"what did you learn",short,0,1,1,1,1,7,1
+8,"what is geo to you",structured,0,1,1,1,1,8,2
+9,"this had an image?",objective,1,2,1,1,1,9,1

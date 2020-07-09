@@ -52,6 +52,7 @@ $commands = [
         question_id INT AUTO_INCREMENT PRIMARY KEY ,
         question_text  VARCHAR (255) NOT NULL,
         tag VARCHAR (255) NOT NULL,
+        images INT DEFAULT 0,
         paper_number INT NOT NULL,
         class_id INT,
         term_id INT,

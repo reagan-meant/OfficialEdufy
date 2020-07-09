@@ -15,6 +15,7 @@ if ($_POST['question_text'] and $_POST['class_id'] and $_POST['term_id'] and $_P
   $option2 = $_POST['option2'];
   $option3 = $_POST['option3'];
   $option4 = $_POST['option4'];
+  $images = 0;
 
   /*     $file= $_FILES['questionImage'];
     $answerfile= $_FILES['answerImage'];
@@ -38,18 +39,19 @@ if ($_POST['question_text'] and $_POST['class_id'] and $_POST['term_id'] and $_P
         exit();
     } */
 
-
-  echo $option1;
-  echo $option2;
-  echo $option3;
-  echo $option4;
-  $answerId = insertAnswers($option1, $option2, $option3, $option4);
-  echo $answerId;
-  $questionId = insertQuestion($questionText, $natureOfQn, $ClassId, $termId, $correctOption, $answerId, $subjectId, $paperNumber);
-
-
   // Count # of uploaded files in array
   $total = count($_FILES['questionImages']['name']);
+
+  // Count # of uploaded files in array
+  $answerTotal = count($_FILES['answerImages']['name']);
+
+  if (($total > 0) || ($answerTotal > 0)) {
+    $images = 1;
+  }
+
+  $answerId = insertAnswers($option1, $option2, $option3, $option4);
+  echo $answerId;
+  $questionId = insertQuestion($questionText, $natureOfQn, $images, $ClassId, $termId, $correctOption, $answerId, $subjectId, $paperNumber);
 
   // Loop through each file
   for ($i = 0; $i < $total; $i++) {
@@ -57,22 +59,17 @@ if ($_POST['question_text'] and $_POST['class_id'] and $_POST['term_id'] and $_P
     //Get the temp file path
     $tmpFilePath = $_FILES['questionImages']['tmp_name'][$i];
     $file_type =  $_FILES['questionImages']['type'][$i];
-    $newFilePath = '../resources/images/questions/'.'qn'.$questionId.'.'. $i.'.jpg';
+    $newFilePath = '../resources/images/questions/' . 'qn' . $questionId . '.' . $i . '.jpg';
 
     //Make sure we have a file path
     if ($tmpFilePath != "") {
       //Setup our new file path
 
-      if (($file_type == "image/gif") || ($file_type == "image/jpeg") || ($file_type == "image/png") || ($file_type == "image/pjpeg"))
-      {
-          $filename = compress_image($tmpFilePath, $newFilePath, 20);
+      if (($file_type == "image/gif") || ($file_type == "image/jpeg") || ($file_type == "image/png") || ($file_type == "image/pjpeg")) {
+        $filename = compress_image($tmpFilePath, $newFilePath, 20);
+      } else {
+        echo "Uploaded image should be jpg or gif or png.";
       }
-      else
-      {
-          echo "Uploaded image should be jpg or gif or png.";
-      }
-
-
 
       /* //Upload the file into the temp dir
       if (move_uploaded_file($tmpFilePath, $newFilePath)) {
@@ -84,8 +81,6 @@ if ($_POST['question_text'] and $_POST['class_id'] and $_POST['term_id'] and $_P
   }
 
 
-  // Count # of uploaded files in array
-  $answerTotal = count($_FILES['answerImages']['name']);
 
   // Loop through each file
   for ($i = 0; $i < $answerTotal; $i++) {
@@ -93,22 +88,17 @@ if ($_POST['question_text'] and $_POST['class_id'] and $_POST['term_id'] and $_P
     //Get the temp file path
     $tmpFilePath = $_FILES['answerImages']['tmp_name'][$i];
     $file_type =  $_FILES['answerImages']['type'][$i];
-    $newFilePath = '../resources/images/answers/'.'qn'.$answerId.'.'. $i.'.jpg';
+    $newFilePath = '../resources/images/answers/' . 'qn' . $answerId . '.' . $i . '.jpg';
 
     //Make sure we have a file path
     if ($tmpFilePath != "") {
       //Setup our new file path
 
-      if (($file_type == "image/gif") || ($file_type == "image/jpeg") || ($file_type == "image/png") || ($file_type == "image/pjpeg"))
-      {
-          $filename = compress_image($tmpFilePath, $newFilePath, 20);
+      if (($file_type == "image/gif") || ($file_type == "image/jpeg") || ($file_type == "image/png") || ($file_type == "image/pjpeg")) {
+        $filename = compress_image($tmpFilePath, $newFilePath, 20);
+      } else {
+        echo "Uploaded image should be jpg or gif or png.";
       }
-      else
-      {
-          echo "Uploaded image should be jpg or gif or png.";
-      }
-
-
     }
   }
 
@@ -165,11 +155,11 @@ function insertAnswers($option1, $option2, $option3, $option4)
 }
 
 
-function insertQuestion($questionText, $natureOfQn, $ClassId, $termId, $correctOption, $answerId, $subjectId, $paperNumber)
+function insertQuestion($questionText, $natureOfQn, $images, $ClassId, $termId, $correctOption, $answerId, $subjectId, $paperNumber)
 {
   $conn = OpenCon();
-  $query = $conn->prepare("INSERT INTO questions(question_text,tag,class_id,term_id,correct_option,answer_id,subject_id,paper_number) VALUES (?,?,?,?,?,?,?,?)");
-  $query->bind_param("ssiiiiii", $questionText, $natureOfQn, $ClassId, $termId, $correctOption, $answerId, $subjectId, $paperNumber);
+  $query = $conn->prepare("INSERT INTO questions(question_text,tag,images,class_id,term_id,correct_option,answer_id,subject_id,paper_number) VALUES (?,?,?,?,?,?,?,?,?)");
+  $query->bind_param("sssiiiiii", $questionText, $natureOfQn, $images, $ClassId, $termId, $correctOption, $answerId, $subjectId, $paperNumber);
 
 
   if ($query->execute()) {

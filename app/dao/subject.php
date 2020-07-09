@@ -33,7 +33,7 @@ function selectSubjects()
       return "zero";
     }
   } else {
-    return $result->error;
+    return $conn->error;
   }
 }
 ?>

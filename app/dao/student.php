@@ -67,7 +67,7 @@ function getStudents()
       return "zero";
     }
   } else {
-    return $result->error;
+    return $conn->error;
   }
 }
 
@@ -82,7 +82,7 @@ function checkStudentbyUsername($studentUsername)
       return "zero";
     }
   } else {
-    return $result->error;
+    return $conn->error;
   }
 }
 
@@ -97,7 +97,7 @@ function getStudentbyUsername($studentUsername)
       return "zero";
     }
   } else {
-    return $result->error;
+    return $conn->error;
   }
 } 
 
@@ -112,7 +112,7 @@ function checkStudentbyUsernameAndPassword($studentUsername,$studentPassword)
       return "zero";
     }
   } else {
-    return $result->error;
+    return $conn->error;
   }
 }
 
